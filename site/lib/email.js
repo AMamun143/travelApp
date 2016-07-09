@@ -5,12 +5,12 @@ module.exports = function(credentials){
 	var mailTransport = nodemailer.createTransport('SMTP',{
 		service: 'Gmail',
 		auth: {
-			user: credentials.gmail_user,
-			pass: credentials.gmail_password,
+			user: credentials.gmail.user,
+			pass: credentials.gmail.password,
 		}
 	});
 
-	var from = '"Meadowlark Travel" <info@meadowlarktravel.com>';
+	var from = '"Travel USA" <info@travelusa.com>';
 	var errorRecipient = 'amamun4221@gmail.com';
 
 	return {
@@ -27,14 +27,14 @@ module.exports = function(credentials){
 		},
 
 		emailError: function(message, filename, exception){
-			var body = '<h1>Meadowlark Travel Site Error</h1>' +
+			var body = '<h1>Travel USA Site Error</h1>' +
 				'message:<br><pre>' + message + '</pre><br>';
 			if(exception) body += 'exception:<br><pre>' + exception + '</pre><br>';
 			if(filename) body += 'filename:<br><pre>' + filename + '</pre><br>';
 		    mailTransport.sendMail({
 		        from: from,
 		        to: errorRecipient,
-		        subject: 'Meadowlark Travel Site Error',
+		        subject: 'Travel USA Site Error',
 		        html: body,
 		        generateTextFromHtml: true
 		    }, function(err){

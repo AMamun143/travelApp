@@ -1,8 +1,55 @@
-<h1>Welcome to Meadowlark Travel</h1>
-<h2>Check out our featured tour packages:</h2>
-<ul>
-	<li><a href="/vacation/hood-river-day-trip">Hood River Day Trip</a></li>
-	<li><a href="/vacation/oregon-coast-getaway">Oregon Coast Getaway</a></li>
-	<li><a href="/vacation/rock-climbing-in-bend">Rock Climbing in Bend</a></li>
-</ul>
-{{> weather}}
+{{!-- 
+  					<h2>Welcome to Meadowlark Travel</h2>
+  					<div class="panel panel-default">
+    				<div class="panel-body">
+
+						<div class="container">
+  							<h3>Check out our featured tour packages:</h3>
+  							<ul class="list-group">
+    							<li><a href="/vacation/hood-river-day-trip">Hood River Day Trip</a></li>
+    							<li><a href="/vacation/oregon-coast-getaway">Oregon Coast Getaway</a></li>
+    							<li><a href="/vacation/rock-climbing-in-bend">Rock Climbing in Bend</a></li>
+  							</ul>
+						</div>
+					</div>	
+				</div>
+
+
+
+					
+					<div class="col-sm-4">
+  					<h2>Weather</h2>
+  						<div class="panel panel-default">
+  									{{> weather}}
+								</div>
+							</div>	
+						</div> --}}
+
+
+  <div class="panel-body">
+    <div class="container">
+      <div class="row">
+      <div class='span12'>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <a href="/vacation/hood-river-day-trip" class="thumbnail">
+          <p>Hood-river: A famous tourist attraction in Oregan.</p>
+          <img src="/img/hood-river-day-trip.jpg" alt="hood river" style="width:200px;height:200px">
+          </a>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <a href="/vacation/oregon-coast-getaway" class="thumbnail">
+          <p>Oregon coast: most beautiful coast of Oregan.</p>
+          <img src="/img/oregon-coast-getaway.jpg" alt="oregon coast" style="width:200px;height:200px">
+          </a>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <a href="/vacation/rock-climbing-in-bend" class="thumbnail">
+          <p>Rock climbing in bend: The mountains of Oregan.</p>
+          <img src="/img/rock-climbing-in-bend.jpg" alt="Rock climbing in bend" style="width:200px;height:200px">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
