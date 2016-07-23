@@ -1,55 +1,141 @@
-{{!-- 
-  					<h2>Welcome to Meadowlark Travel</h2>
-  					<div class="panel panel-default">
-    				<div class="panel-body">
-
-						<div class="container">
-  							<h3>Check out our featured tour packages:</h3>
-  							<ul class="list-group">
-    							<li><a href="/vacation/hood-river-day-trip">Hood River Day Trip</a></li>
-    							<li><a href="/vacation/oregon-coast-getaway">Oregon Coast Getaway</a></li>
-    							<li><a href="/vacation/rock-climbing-in-bend">Rock Climbing in Bend</a></li>
-  							</ul>
-						</div>
-					</div>	
-				</div>
-
-
-
-					
-					<div class="col-sm-4">
-  					<h2>Weather</h2>
-  						<div class="panel panel-default">
-  									{{> weather}}
-								</div>
-							</div>	
-						</div> --}}
-
-
-  <div class="panel-body">
-    <div class="container">
-      <div class="row">
-      <div class='span12'>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <a href="/vacation/hood-river-day-trip" class="thumbnail">
-          <p>Hood-river: A famous tourist attraction in Oregan.</p>
-          <img src="/img/hood-river-day-trip.jpg" alt="hood river" style="width:200px;height:200px">
-          </a>
-        </div>
-
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <a href="/vacation/oregon-coast-getaway" class="thumbnail">
-          <p>Oregon coast: most beautiful coast of Oregan.</p>
-          <img src="/img/oregon-coast-getaway.jpg" alt="oregon coast" style="width:200px;height:200px">
-          </a>
-        </div>
-
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <a href="/vacation/rock-climbing-in-bend" class="thumbnail">
-          <p>Rock climbing in bend: The mountains of Oregan.</p>
-          <img src="/img/rock-climbing-in-bend.jpg" alt="Rock climbing in bend" style="width:200px;height:200px">
-          </a>
-        </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" width="150px" height="100px"></a>
       </div>
-    </div>
-  </div>
+
+      <div id="navbar" class="container collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              {{#unless logged_in}}
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/vacations">Attractions</a></li>
+                  <li><a href="/dealers">Shops</a></li>
+                  <li><a href="/newsletter">Subscribe</a></li>
+                  <li><a href="/contest/vacation-photo">Enter Contest</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/customer/register">Register</a></li>
+
+              {{/unless}}
+              {{#if logged_in}}
+              {{#if username}}
+                  <li><a>Welcome, {{username}}!</a></li>
+              {{/if}}
+                  <li><a href="/users/sign-out">Sign Out</a></li>
+
+                <div class="col-sm-2 pull-right">
+              {{#if cartItems}}
+                <a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
+                alt="Cart Empty"></a>
+              {{else}}
+                <a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
+                alt="Cart Contains {{cartItems}} Items"></a>
+              {{/if}}
+            </div>
+                      {{/if}}
+          </ul>
+      </div>
+  </nav>
+</div>
+
+<div class="bs-example">
+   <div class="container">
+          <h2>Attractions of the month</h2>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/hood-river-day-trip.jpg" alt="Hood River">
+                    <div class="caption">
+                        <h3>Hood River</h3>
+                        <p>Hood River is the western gateway to the Mount Hood Scenic Byway and to a major section of the Historic Columbia River Highway. Hood River is considered a "sports mecca" and offers some of the best spots for windsurfing, kitesurfing, kayaking, stand up paddleboarding, skiing and mountain biking—all for which it draws considerable national attention from many media outlets, such as National Geographic Adventure.</p>
+
+                        <p><a href="/vacation/hood-river-day-trip" class="btn btn-primary">Select</a></p>
+
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/hlCKuuetjBY" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/oregon-coast-getaway.jpg" alt="Oregon Coast">
+                    <div class="caption">
+                        <h3>Oregon Coast</h3>
+                        <p>Due to its scenery, wildlife, and history, the Oregon Coast is a popular travel destination. Hiking, sport fishing, cycling, kite flying, scuba diving, surfing, sandboarding, and boating are common activities for visitors to the region. Historic areas, such as Fort Clatsop, Battle Rock, and Oregon's lighthouses are all popular sites for visitors. The Oregon Coast is also known for its scenic areas, such as Cape Perpetua, Cape Blanco and Cape Arago.</p>
+
+                        <p><a href="/vacation/oregon-coast-getaway" class="btn btn-primary">Select</a></p>
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/M-hGwtvtXCk" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/rock-climbing-in-bend.jpg" alt="Rock climbing in bend">
+                    <div class="caption">
+                        <h3>Rock climbing in bend</h3>
+                        <p>Smith Rock is an international rock climbing destination, with renowned routes and climbing areas such as Monkey Face, Mesa Verde Wall, Dihedrals and others providing a variety of challenges for all skill levels. Check out the photo above by Ben Moon, a Bend local photography star, who managed to capture the spectacular -- and kind of scary -- views of climbing at Smith Rock.</p>
+
+                        <p><a href="/vacation/rock-climbing-in-bend" class="btn btn-primary">Select</a></p>
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/vrl8rKYYeO0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/nyc.jpg" alt="New York City">
+                    <div class="caption">
+                        <h3>New York City</h3>
+                        <p>Home to the Empire State Building, Times Square, Statue of Liberty and other iconic sites, New York City is a fast-paced, globally influential center of art, culture, fashion and finance. The city’s 5 boroughs sit where the Hudson River meets the Atlantic Ocean, with the island borough of Manhattan at the “Big Apple's" core.</p>
+                        <p><a href="/vacation/oregon-coast-getaway" class="btn btn-primary">Select</a></p>
+
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/MtCMtC50gwY" frameborder="0" allowfullscreen></iframe>
+                  
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/niagra.jpg" alt="Niagra Falls">
+                    <div class="caption">
+                        <h3>Niagra Falls</h3>
+                        <p>Niagara Falls is the collective name for three waterfalls that straddle the international border between Canada and the United States.They form the southern end of the Niagara Gorge. From largest to smallest, the three waterfalls are the Horseshoe Falls, the American Falls and the Bridal Veil Falls. The Horseshoe Falls lie mostly on the Canadian side and the American Falls entirely on the American side, separated by Goat Island.</p>
+
+                        <p><a href="/vacation/oregon-coast-getaway" class="btn btn-primary">Select</a></p>
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/zZ72BzjvLW0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/vegas.jpg" alt="Las Vegas">
+                    <div class="caption">
+                        <h3>Las Vegas</h3>
+                        <p>The major attractions in Las Vegas are the casinos and the hotels. Most casinos in the downtown area are located on the Fremont Street Experience, The Stratosphere being one of the exceptions. Fremont East, adjacent to the Fremont Street Experience, was granted variances to allow bars to be closer together, similar to the Gaslamp Quarter of San Diego, the goal being to attract a different demographic than the Strip attracts.</p>
+
+                        <p><a href="/vacation/oregon-coast-getaway" class="btn btn-primary">Select</a></p>
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/WmsG0tnEMgI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="thumbnail">
+                    <img class="mainimg" src="/img/grand.jpg" alt="Grand Canyon">
+                    <div class="caption">
+                        <h3>Grand Canyon</h3>
+                        <p>Grand Canyon National Park is one of the world's premier natural attractions, attracting about five million visitors per year. Aside from casual sightseeing from the South Rim (averaging 7,000 feet [2,100 m] above sea level), skydiving, rafting, hiking, running, and helicopter tours are popular. The Grand Canyon Ultra Marathon is a 78-mile (126 km) race over 24 hours. The floor of the valley is accessible by foot, muleback, or by boat or raft from upriver.</p>
+
+                        <p><a href="/vacation/oregon-coast-getaway" class="btn btn-primary">Select</a></p>
+                        <iframe width="500" height="170" src="https://www.youtube.com/embed/Bqj2Txnjvfk" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>
+
+
+

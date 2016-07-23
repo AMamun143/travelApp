@@ -6,6 +6,8 @@ var main = require('./handlers/main.js'),
 	contact = require('./handlers/contact.js'),
 	samples = require('./handlers/sample.js'),
 	customerController = require('./controllers/customer.js');
+	usersController = require('./controllers/users_controller.js');
+	dealers = require('./handlers/dealers.js');
 
 module.exports = function(app){
 
@@ -44,13 +46,20 @@ module.exports = function(app){
 	app.get('/contact', contact.home);
 	app.post('/contact', contact.homeProcessPost);
 
+
 	// testing/sample routes
 	app.get('/jquery-test', samples.jqueryTest);
 	app.get('/nursery-rhyme', samples.nurseryRhyme);
 	app.get('/data/nursery-rhyme', samples.nurseryRhymeData);
 	app.get('/epic-fail', samples.epicFail);
 
+	// dealers
+	app.get('/dealers', dealers.home);
+
 	// customer routes
 	customerController.registerRoutes(app);
+
+	// users routes
+	app.get('/users_controller');
 
 };

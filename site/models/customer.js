@@ -10,6 +10,8 @@ var customerSchema = mongoose.Schema({
 	state: String,
 	zip: String,
 	phone: String,
+	user: String,
+	password: String,
 	salesNotes: [{
 		date: Date,
 		salespersonId: Number,

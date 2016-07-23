@@ -3,309 +3,227 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <title>Discover NYC</title>
+	<head>
+	   	<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Discover USA</title>
 		{{#if showTests}}
 			<link rel="stylesheet" href="{{static '/vendor/mocha.css'}}">
 		{{/if}}
 		{{{_sections.head}}}
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="{{static '/vendor/bootstrap/css/bootstrap.min.css'}}">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-		<link rel="stylesheet" href="{{static '/vendor/bootstrap/css/bootstrap-theme.min.css'}}">
-		{{#each _bundles.css}}
-			<link rel="stylesheet" href="{{static .}}">
-		{{/each}}
+			<link rel="stylesheet" href="{{static '/vendor/bootstrap/css/bootstrap.min.css'}}">
+			<link rel="stylesheet" href="{{static '/vendor/css/style.css'}}">
+	    <style>
+	        body {
+	               padding-top: 50px;
+	               padding-bottom: 20px;
+	           }
+	    </style>
+			<link rel="stylesheet" href="{{static '/vendor/bootstrap/css/bootstrap-theme.min.css'}}">
+			{{#each _bundles.css}}
+				<link rel="stylesheet" href="{{static .}}">
+			{{/each}}
 
 		<script src="{{static '/vendor/js/modernizr-2.6.2-respond-1.1.0.min.js'}}"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+	</head>
+	<body>
+{{!-- Picture Slides --}}
+<div class="jumbotron">
+		<div class="panel panel-default">
+	  		<div class="panel-body">
+	    		<div class="row">
+	  				<div class='span12'>
+	  					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    					<!-- Indicators -->
+	    					<ol class="carousel-indicators">
+	      						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      						<li data-target="#myCarousel" data-slide-to="1"></li>
+	      						<li data-target="#myCarousel" data-slide-to="2"></li>
+	      						<li data-target="#myCarousel" data-slide-to="3"></li>
+	      						<li data-target="#myCarousel" data-slide-to="4"></li>
+	      						<li data-target="#myCarousel" data-slide-to="5"></li>
+	      						<li data-target="#myCarousel" data-slide-to="6"></li>
+	      						<li data-target="#myCarousel" data-slide-to="7"></li>
+	      						<li data-target="#myCarousel" data-slide-to="8"></li>
+	      						<li data-target="#myCarousel" data-slide-to="9"></li>
+	    					</ol>
 
+	    					<!-- Wrapper for slides -->
+	    					<div class="carousel-inner" role="listbox">
+	      						<div class="item active">
+	        						<img src="/img/image0.jpg" alt="" width="100%" height="200">
+	        						<div class="carousel-caption"></div>
+	      						</div>
 
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image1.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>
+	    
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image2.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a id="logo" class="navbar-brand" href="/">Discover NYC</a>
-        </div>
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image3.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>
 
-        <div id="navbar" class="container collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                {{#unless logged_in}}
-                	<li><a href="/about">About</a></li>
-                	<li><a href="/contest/vacation-photo">Enter Contest</a></li>
-                    <li><a href="">Sign In</a></li>
-                    <li><a href="/customer/register">Register</a></li>
+	       						<div class="item"alt="" width="500" height="200">
+	        						<img src="/img/image4.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>
 
-                    <div class="col-sm-2 pull-right">
-					{{! The following represents a lot of code duplication, so we will probably want to
-						change this in the future }}
-					{{#if cartItems}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
-							alt="Cart Empty"></a>
-					{{else}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
-							alt="Cart Contains {{cartItems}} Items"></a>
-					{{/if}}
-				</div>
-                {{/unless}}
-                {{#if logged_in}}
-                    {{#if username}}
-                        <li><a>Welcome, {{username}}!</a></li>
-                    {{/if}}
-                    <li><a href="/admin/home">Admin</a></li>
-                    <li><a href="/admin/users">Users</a></li>
-                    <li><a href="/users/sign-out">Sign Out</a></li>
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image5.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>
 
-                    <div class="col-sm-2 pull-right">
-					{{! The following represents a lot of code duplication, so we will probably want to
-						change this in the future }}
-					{{#if cartItems}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
-							alt="Cart Empty"></a>
-					{{else}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
-							alt="Cart Contains {{cartItems}} Items"></a>
-					{{/if}}
-				</div>
-                {{/if}}
-            </ul>
-        </div>
-    </div>
-</nav>
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image6.jpg">
+	        						<div class="carousel-caption"></div>
+	      						</div>   
 
-{{!-- 		<header>
-			<div class="row">
-				<div class="col-sm-4">
-					<img src="{{logoImage}}" alt="Meadowlark Travel Logo">
-				</div> --}}
-	{{!-- 			<div class="col-sm-2 pull-right">
-					{{! The following represents a lot of code duplication, so we will probably want to
-						change this in the future }}
-					{{#if cartItems}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
-							alt="Cart Empty"></a>
-					{{else}}
-						<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
-							alt="Cart Contains {{cartItems}} Items"></a>
-					{{/if}}
+	      						<div class="item" alt="" width="500" height="200">
+	        						<img src="/img/image7.jpg" alt="" width="460" height="200">
+	        						<div class="carousel-caption"></div>
+	      						</div>  
+
+	      						<div class="item">
+	        						<img src="/img/image8.jpg" alt="" width="500" height="200">
+	        						<div class="carousel-caption"></div>
+	      						</div> 
+
+	      						<div class="item">
+	        						<img src="/img/image9.jpg" alt="" width="500" height="200">
+	        						<div class="carousel-caption"></div>
+	      						</div>
+	  						</div>
+
+	    					<!-- Left and right controls -->
+	    					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+	      						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	      						<span class="sr-only">Previous</span>
+	    					</a>
+	    					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+	      						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	      						<span class="sr-only">Next</span>
+	    					</a>
+	  					</div>
+					</div>
 				</div>
 			</div>
-		</header> --}}
+		</div>
+	</div>
 
 
-  <div class="panel-body panel-fixed-top">
-  <div class="container">
-  <div class="row">
-  <div class='span12'>
-  <div class="container">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-      <li data-target="#myCarousel" data-slide-to="5"></li>
-      <li data-target="#myCarousel" data-slide-to="6"></li>
-      <li data-target="#myCarousel" data-slide-to="7"></li>
-      <li data-target="#myCarousel" data-slide-to="8"></li>
-      <li data-target="#myCarousel" data-slide-to="9"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      	<div class="item active">
-        <img src="/img/image0.jpg" alt="" width="500" height="200">
-        <div class="carousel-caption">
-          {{!-- <h3>Chania</h3>
-          <p>The atmosphere in Chania has a touch of Florence and Venice.</p> --}}
-        </div>
-      </div>
-
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image1.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Chania</h3>
-          <p>The atmosphere in Chania has a touch of Florence and Venice.</p> --}}
-        </div>
-      </div>
-    
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image2.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>
-
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image3.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>
-
-       <div class="item"alt="" width="500" height="200">
-        <img src="/img/image4.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-       </div>
-      </div>
-
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image5.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>
-
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image6.jpg">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>   
-
-      <div class="item" alt="" width="500" height="200">
-        <img src="/img/image7.jpg" alt="" width="460" height="200">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>  
-
-      <div class="item">
-        <img src="/img/image8.jpg" alt="" width="500" height="200">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div> 
-
-      <div class="item">
-        <img src="/img/image9.jpg" alt="" width="500" height="200">
-        <div class="carousel-caption">
-          {{!-- <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p> --}}
-        </div>
-      </div>
-  
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-
-
-
-	    <div class="container">
+		<div class="container">
 			{{#if flash}}
 				<div class="alert alert-dismissible alert-{{flash.type}}">
 					<button type="button" class="close" 
-						data-dismiss="alert" aria-hidden="true">&times;</button>
+							data-dismiss="alert" aria-hidden="true">&times;</button>
 					<strong>{{flash.intro}}</strong> {{{flash.message}}}
 				</div>
 			{{/if}}
 
-		    {{{body}}}
+			    {{{body}}}
 
-			<hr>
+				<hr>
 
-			<!-- footer -->
-        <div class='row'>
-            <div class='span12'>
-                <div class='footer'>
-                <div class="panel-footer">Discover NYC 2016</div>
-                <jdoc:include type="modules" name="footer" style="none" />
-                </div>
-            </div>
-        </div>
+<!-- footer -->
+<div class="footer">
+<div class="container">
+	<div class="row-fluid">
+        	<div class="col-md-4">
+        		<h5>Our location<h5>
+        		<iframe width="250px" height="150px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.902628678919!2d-73.89846668518345!3d40.74216804370738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25efdf2add157%3A0x509218e2c38a8352!2s42-21+68th+St%2C+Queens%2C+NY+11377!5e0!3m2!1sen!2sus!4v1469058426110" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        	</div>
 
+        	<div class="col-md-4">
+        		<a href="/feedback">Leave us your feedback</a></br>
+        		<a href="/vacations">Vacation packages</a></br>      		
+        		<a href="/contest/vacation-photo">Enter contest</a></br> 
+        		<a href="/home">Home</a></br> 
+        		<a href="/about">About</a></br> 
+        		<a href="/newsletter">Subscribe for News letters</a></br> 
+       			<a href="/dealers">Souvenir shops</a></br> 
+       			<a href="/request-group-rate">Request group rates</a></br> 
+        		</br>
+        		<h5>&#169; Copyright Discover USA</h5>
+        	</div>
+        	
 
-	    </div> <!-- /container -->        
+        	<div class="col-md-4">
+        	<h5>Connect with us<h5>
+        		<div class="social">
+        			<div class="side">
+							<ul>
+								<li><a href="https://github.com/AMamun143" target="_blank"><img src="/img/social-cat.png" /></a></li>
+								<li><a href="https://www.linkedin.com/in/abdullah-mamun-a96a9854
+	" target="_blank"><img src="/img/Linked-in.png" /></a></li>
+								<li><a href="https://www.facebook.com/mamun.khandakar.12" target="_blank"><img src="/img/facebook.png" /></a></li>
+							</ul>
+					</div>
+        		</div>
+    		</div>
+    	</div>
+	</div> 
+</div> 
 
-        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script>window.jQuery || document.write('<script src="{{static '/vendor/js/jquery-2.1.1.min.js'}}"><\/script>')</script>
-		{{! since we've move jquery to the end of the body (instead of in head), we should really rename this bundle
-			to something other than "head", but i'm leaving it for consistency with the book. }}
-		{{#each _bundles.js.head}}
-			<script src="{{static .}}"></script>
-		{{/each}}
-		<script>
-			var IMG_CART_EMPTY = '{{static '/img/shop/cart_empty.png'}}';
-			var IMG_CART_FULL = '{{static '/img/shop/cart_full.png'}}';
-
-			// simple client-side cart implementation (mostly mocked for now)
-			var cart = (function() {
-				// normally we would get this from an AJAX call, or some similar method
-				var items = Array({{cartItems}});
-				return {
-					items: items,
-					isEmpty: function() {
-						return !items.length;
-					},
-					addItem: function(id) {
-						items.push(id);
-						$(document).trigger('meadowlark_cart_changed');
-					}
-				};
-			})();
-
-			// change cart icon when the cart has changed
-			$(document).on('meadowlark_cart_changed', function(){
-				$('header img.cartIcon').attr('src', cart.isEmpty() ?
-				IMG_CART_EMPTY : IMG_CART_FULL );
-			});
-		</script>
-    	{{{_sections.jquery}}}
-
-		{{#if showTests}}
-			<div id="mocha"></div>
-			<script src="{{static '/vendor/mocha.js'}}"></script>
-			<script src="{{static '/vendor/chai.js'}}"></script>
+	        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script>window.jQuery || document.write('<script src="{{static '/vendor/js/jquery-2.1.1.min.js'}}"><\/script>')</script>
+			
+			{{#each _bundles.js.head}}
+				<script src="{{static .}}"></script>
+			{{/each}}
 			<script>
-				mocha.ui('tdd');
-				var assert = chai.assert;
-			</script>
-			<script src="{{static '/qa/tests-global.js'}}"></script>
-			{{#if pageTestScript}}
-				<script src="{{pageTestScript}}"></script>
-			{{/if}}
-			<script>mocha.run();</script>
-		{{/if}}
+				var IMG_CART_EMPTY = '{{static '/img/shop/cart_empty.png'}}';
+				var IMG_CART_FULL = '{{static '/img/shop/cart_full.png'}}';
 
-		<script src="{{static '/vendor/bootstrap/js/bootstrap.min.js'}}"></script>
-		<script src="{{static '/js/main.js'}}"></script>
-    </body>
+				// simple client-side cart implementation (mostly mocked for now)
+				var cart = (function() {
+					// normally we would get this from an AJAX call, or some similar method
+					var items = Array({{cartItems}});
+					return {
+						items: items,
+						isEmpty: function() {
+							return !items.length;
+						},
+						addItem: function(id) {
+							items.push(id);
+							$(document).trigger('meadowlark_cart_changed');
+						}
+					};
+				})();
+
+				// change cart icon when the cart has changed
+				$(document).on('meadowlark_cart_changed', function(){
+					$('header img.cartIcon').attr('src', cart.isEmpty() ?
+					IMG_CART_EMPTY : IMG_CART_FULL );
+				});
+			</script>
+	    	{{{_sections.jquery}}}
+
+			{{#if showTests}}
+				<div id="mocha"></div>
+				<script src="{{static '/vendor/mocha.js'}}"></script>
+				<script src="{{static '/vendor/chai.js'}}"></script>
+				<script>
+					mocha.ui('tdd');
+					var assert = chai.assert;
+				</script>
+				<script src="{{static '/qa/tests-global.js'}}"></script>
+				{{#if pageTestScript}}
+					<script src="{{pageTestScript}}"></script>
+				{{/if}}
+				<script>mocha.run();</script>
+			{{/if}}
+
+			<script src="{{static '/vendor/bootstrap/js/bootstrap.min.js'}}"></script>
+			<script src="{{static '/js/main.js'}}"></script>
+	</body>
 </html>

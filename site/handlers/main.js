@@ -1,7 +1,10 @@
 var fortune = require('../lib/fortune.js');
 
 exports.home = function(req, res){
-	res.render('home');
+	res.render('home', {
+		logged_in:req.session.logged_in,
+		username:req.session.username
+	});
 };
 
 exports.about = function(req, res){
@@ -63,3 +66,12 @@ exports.newsletterArchive = function(req, res){
 exports.genericThankYou = function(req, res){
 	res.render('thank-you');
 }
+
+
+
+// exports.home = function(req, res){
+// 	res.render('home', {
+// 		logged_in: req.session.logged_in,
+// 		username: req.session.username
+// 	});
+// };

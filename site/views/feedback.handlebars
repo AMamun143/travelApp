@@ -1,0 +1,81 @@
+1<nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" width="150px" height="100px"></a>
+      </div>
+
+      <div id="navbar" class="container collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              {{#unless logged_in}}
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/vacations">Attractions</a></li>
+                  <li><a href="/dealers">Shops</a></li>
+                  <li><a href="/newsletter">Subscribe</a></li>
+                  <li><a href="/contest/vacation-photo">Enter Contest</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/customer/register">Register</a></li>
+
+              {{/unless}}
+              {{#if logged_in}}
+              {{#if username}}
+                  <li><a>Welcome, {{username}}!</a></li>
+              {{/if}}
+                  <li><a href="/users/sign-out">Sign Out</a></li>
+
+	         			<div class="col-sm-2 pull-right">
+							{{#if cartItems}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
+								alt="Cart Empty"></a>
+							{{else}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
+								alt="Cart Contains {{cartItems}} Items"></a>
+							{{/if}}
+						</div>
+	                		{{/if}}
+	        </ul>
+	    </div>
+	</nav>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class='span 6'>
+                <script type="text/javascript" src="http://irc.unitedchat.net/flash/swfobject.js"></script>
+<center><div id="flashcontent">
+This chat application requires <a href="http://www.adobe.com/go/getflash/">Flash Player.</a>
+</div></center>
+<script type="text/javascript">
+  var so = new SWFObject("http://irc.unitedchat.net/flash/VLoader.swf", "ChatNow", "780", "500", "7", "#FFFFFF");
+  so.addParam("base", "http://irc.unitedchat.net/flash/");
+  so.addVariable("versionsurl", "chatnow-versions.xml");
+  so.addVariable("initswf", "/flash/ChatNow.swf");
+  so.addVariable("themedirectory", "themes/");
+  so.addVariable("themename", "Theme-Achat.swf");
+  so.addVariable("room", "DiscoverUSA");
+  so.addVariable("user", "FlashUser");
+  so.addVariable("fullname", "Flash User");
+  so.addVariable("connect", "true");
+  so.addVariable("allowusercommands", "true");
+  so.addVariable("showsystemmessages", "true");
+  so.addVariable("showjoinmessages", "true");
+  so.addVariable("showpartmessages", "true");
+  so.addVariable("showradio", "true");
+  so.write("flashcontent");
+</script>
+          </div>
+          <div class='span 6'>
+                  <!-- begin htmlcommentbox.com -->
+                   <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Discover USA</a> is loading comments...</div>
+                   <link rel="stylesheet" type="text/css" href="http://www.htmlcommentbox.com/static/skins/default/skin.css" />
+                   <script type="text/javascript" language="javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={  };} (function(){s=document.createElement("script");s.setAttribute("type","text/javascript");s.setAttribute("src", "http://www.htmlcommentbox.com/jread?page="+escape((window.hcb_user && hcb_user.PAGE)||(""+window.location)).replace("+","%2B")+"&opts=470&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+                  <!-- end htmlcommentbox.com -->
+          </div>
+      </div>
+  </div>
+</div>

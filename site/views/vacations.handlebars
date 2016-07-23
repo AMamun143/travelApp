@@ -1,53 +1,107 @@
-<h1>Vacations</h1>
-{{#each vacations}}
-    <div class="vacation">
-        <h3><a href="/vacation/{{slug}}">{{name}}</a></h3>
-        <p>{{description}}</p>
-        {{#if inSeason}}
-            <span class="price">{{price}}</span> 
-			<a href="/cart/add?sku={{sku}}" data-action="cart-add" data-sku="{{sku}}" class="btn btn-default">Add to cart</a>
-        {{else}}
-            <span class="outOfSeason">We're sorry, this vacation is currently 
-            not in season.
-            {{! The "notify me when this vacation is in season" 
-                page will be our next task. }}
-            <a href="/notify-me-when-in-season?sku={{sku}}">Notify me when 
-            this vacation is in season.</a>
-        {{/if}}
-    </div>
-{{/each}}
+<nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" width="150px" height="100px"></a>
+      </div>
 
-<hr>
+      <div id="navbar" class="container collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              {{#unless logged_in}}
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/vacations">Attractions</a></li>
+                  <li><a href="/dealers">Shops</a></li>
+                  <li><a href="/newsletter">Subscribe</a></li>
+                  <li><a href="/contest/vacation-photo">Enter Contest</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/customer/register">Register</a></li>
 
-<p>Currency:
-    <a href="/set-currency/USD" class="currency {{currencyUSD}}">USD</a> |
-    <a href="/set-currency/GBP" class="currency {{currencyGBP}}">GBP</a> |
-    <a href="/set-currency/BTC" class="currency {{currencyBTC}}">BTC</a>
-</p>
+              {{/unless}}
+              {{#if logged_in}}
+              {{#if username}}
+                  <li><a>Welcome, {{username}}!</a></li>
+              {{/if}}
+                  <li><a href="/users/sign-out">Sign Out</a></li>
 
-{{#section 'jquery'}}
-	<script>
-		$(document).ready(function() {
-			$('[data-action="cart-add"]').on('click', function() {
-				var $this = $(this);
-				$.post($this.attr('href'), { sku: $this.data('sku'), guests: 1 })
-					.done(function() {
-						// it would probably be bettert for cart.addItem to actually handle
-						// the AJAX call; a refactoring for another day!
-						cart.addItem($this.data('sku'));
-						$('<span class="badge">Vacation added!</span>')
-							.hide()
-							.insertAfter($this)
-							.fadeIn();
-					})
-					.fail(function() {
-						$('<span class="badge">Error!  Please try again.</span>')
-							.hide()
-							.insertAfter($this)
-							.fadeIn();
-					});
-				return false;
-			});
-		});
-	</script>
-{{/section}}
+	         			<div class="col-sm-2 pull-right">
+							{{#if cartItems}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
+								alt="Cart Empty"></a>
+							{{else}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
+								alt="Cart Contains {{cartItems}} Items"></a>
+							{{/if}}
+						</div>
+	                		{{/if}}
+	        </ul>
+	    </div>
+	</nav>
+</div>
+
+  	<div class="panel-body">
+      	<div class="container">
+          	<div class="row">
+              	<div class='col-md-12'>
+						<h1>Vacation Packages</h1>
+						{{#each vacations}}
+						    <div class="vacation">
+						        <h3><a href="/vacation/{{slug}}">{{name}}</a></h3>
+						        <p>{{description}}</p>
+						        {{#if inSeason}}
+						            <span class="price">{{price}}</span> 
+									<a href="/cart/add?sku={{sku}}" data-action="cart-add" data-sku="{{sku}}" class="btn btn-default">Add to cart</a>
+						        {{else}}
+						            <span class="outOfSeason">We're sorry, this vacation is currently 
+						            not in season.
+						            {{! The "notify me when this vacation is in season" 
+						                page will be our next task. }}
+						            <a href="/notify-me-when-in-season?sku={{sku}}">Notify me when 
+						            this vacation is in season.</a>
+						        {{/if}}
+						    </div>
+						{{/each}}
+
+						<hr>
+
+						<p>Currency:
+						    <a href="/set-currency/USD" class="currency {{currencyUSD}}">USD</a> |
+						    <a href="/set-currency/GBP" class="currency {{currencyGBP}}">GBP</a> |
+						    <a href="/set-currency/BTC" class="currency {{currencyBTC}}">BTC</a>
+						</p>
+
+						{{#section 'jquery'}}
+							<script>
+								$(document).ready(function() {
+									$('[data-action="cart-add"]').on('click', function() {
+										var $this = $(this);
+										$.post($this.attr('href'), { sku: $this.data('sku'), guests: 1 })
+											.done(function() {
+												// it would probably be bettert for cart.addItem to actually handle
+												// the AJAX call; a refactoring for another day!
+												cart.addItem($this.data('sku'));
+												$('<span class="badge">Vacation added!</span>')
+													.hide()
+													.insertAfter($this)
+													.fadeIn();
+											})
+											.fail(function() {
+												$('<span class="badge">Error!  Please try again.</span>')
+													.hide()
+													.insertAfter($this)
+													.fadeIn();
+											});
+										return false;
+									});
+								});
+							</script>
+						{{/section}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

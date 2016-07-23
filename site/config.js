@@ -1,4 +1,10 @@
 module.exports = {
+
+	'facebook': {
+			'appId': '623533801143929',
+			'appSecret': '46bb008d27679fb9dab0d0cf0f7ea581',
+		},
+
 	bundles: {
 		clientJavaScript: {
 			main: {

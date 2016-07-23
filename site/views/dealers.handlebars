@@ -1,0 +1,119 @@
+<script src="https://maps.googleapis.com/maps/api/js?key={{googleApiKey}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+    <style>
+       #map {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+<script id="dealerTemplate" type="text/x-handlebars-template">
+    \{{#each dealers}}
+        <div class="dealer">
+            <h3>\{{name}}</h3>
+            \{{address1}}<br>
+            \{{#if address2}}\{{address2}}<br>\{{/if}}
+            \{{city}}, \{{state}} \{{zip}}<br>
+            \{{#if country}}\{{country}}<br>\{{/if}}
+            \{{#if phone}}\{{phone}}<br>\{{/if}}
+            \{{#if website}}<a href="{{website}}">\{{website}}</a><br>\{{/if}}
+        </div>
+    \{{/each}}
+</script>
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" width="150px" height="100px"></a>
+      </div>
+
+      <div id="navbar" class="container collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              {{#unless logged_in}}
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/vacations">Attractions</a></li>
+                  <li><a href="/dealers">Shops</a></li>
+                  <li><a href="/newsletter">Subscribe</a></li>
+                  <li><a href="/contest/vacation-photo">Enter Contest</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/customer/register">Register</a></li>
+
+              {{/unless}}
+              {{#if logged_in}}
+              {{#if username}}
+                  <li><a>Welcome, {{username}}!</a></li>
+              {{/if}}
+                  <li><a href="/users/sign-out">Sign Out</a></li>
+
+	         			<div class="col-sm-2 pull-right">
+							{{#if cartItems}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
+								alt="Cart Empty"></a>
+							{{else}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
+								alt="Cart Contains {{cartItems}} Items"></a>
+							{{/if}}
+						</div>
+	                		{{/if}}
+	        </ul>
+	    </div>
+	</nav>
+</div>
+
+
+  	<div class="panel-body">
+      	<div class="container">
+      		<h3>Get your souvenirs from these locations and receive additional 30% off from your purchase</h3>
+          	<div class="row">
+              	<div class='col-md-12'>
+						<div class="dealers">
+						    <div id="map"></div>
+						    <div id="dealerList"></div>
+						</div>
+
+						{{#section 'jquery'}}
+							<script src="{{static '/js/dealers-googleMapMarkers.js'}}"></script>
+							<script>
+								var map;
+								var dealerTemplate = Handlebars.compile($('#dealerTemplate').html());
+								$(document).ready(function(){
+
+									// center map on US, set zoom to show whole country
+									var mapOptions = {
+										center: new google.maps.LatLng(38.2562, -96.0650),
+										zoom: 4,
+									};
+
+									// initialize map
+									map = new google.maps.Map(
+										document.getElementById('map'),
+										mapOptions);
+
+									addMarkers(map);
+
+									// fetch JSON
+									$.getJSON('/dealers.json', function(dealers){
+
+										// update dealer list using Handlebars -- probably want to render this on the
+										// serverside as well, for performance
+										$('#dealerList').html(dealerTemplate({ dealers: dealers }));
+
+									});
+
+								});
+							</script>
+						{{/section}}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+

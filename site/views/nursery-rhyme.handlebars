@@ -1,45 +1,101 @@
-{{#section 'head'}}
-	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+              <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" width="150px" height="100px"></a>
+      </div>
 
-	<script id="nurseryRhymeTemplate" type="text/x-handlebars-template">
-		Marry had a little <b>\{{animal}}</b>, its <b>\{{bodyPart}}</b>
-		was <b>\{{adjective}}</b> as <b>\{{noun}}</b>.
-	</script>
-{{/section}}
+      <div id="navbar" class="container collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              {{#unless logged_in}}
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/vacations">Attractions</a></li>
+                  <li><a href="/dealers">Shops</a></li>
+                  <li><a href="/newsletter">Subscribe</a></li>
+                  <li><a href="/contest/vacation-photo">Enter Contest</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/customer/register">Register</a></li>
 
-<div id="nurseryRhyme">Click a button....</div>
-<hr>
-<button id="btnNurseryRhyme">Generate nursery rhyme</button>
-<button id="btnNurseryRhymeAjax">Generate nursery rhyme from AJAX</button>
+              {{/unless}}
+              {{#if logged_in}}
+              {{#if username}}
+                  <li><a>Welcome, {{username}}!</a></li>
+              {{/if}}
+                  <li><a href="/users/sign-out">Sign Out</a></li>
 
-{{#section 'jquery'}}
-	<script>
-		$(document).ready(function(){
+	         			<div class="col-sm-2 pull-right">
+							{{#if cartItems}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_full.png'}}"
+								alt="Cart Empty"></a>
+							{{else}}
+								<a href="/cart"><img class="cartIcon" src="{{static '/img/shop/cart_empty.png'}}"
+								alt="Cart Contains {{cartItems}} Items"></a>
+							{{/if}}
+						</div>
+	                		{{/if}}
+	        </ul>
+	    </div>
+	</nav>
+</div>
 
-			var nurseryRhymeTemplate = Handlebars.compile(
-				$('#nurseryRhymeTemplate').html());
 
-			var $nurseryRhyme = $('#nurseryRhyme');
+  	<div class="panel-body">
+      	<div class="container">
+          	<div class="row">
+              	<div class='col-md-12'>
+						{{#section 'head'}}
+							<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
 
-			$('#btnNurseryRhyme').on('click', function(evt){
-				evt.preventDefault();
-				$nurseryRhyme.html(nurseryRhymeTemplate({
-					animal: 'basilisk',
-					bodyPart: 'tail',
-					adjective: 'sharp',
-					noun: 'a needle'
-				}));
-			});
+							<script id="nurseryRhymeTemplate" type="text/x-handlebars-template">
+								Marry had a little <b>\{{animal}}</b>, its <b>\{{bodyPart}}</b>
+								was <b>\{{adjective}}</b> as <b>\{{noun}}</b>.
+							</script>
+						{{/section}}
 
-			$('#btnNurseryRhymeAjax').on('click', function(evt){
-				evt.preventDefault();
-				$.ajax('/data/nursery-rhyme', {
-					success: function(data){
-						$nurseryRhyme.html(nurseryRhymeTemplate(data))
-					}
-				});
-			});
+						<div id="nurseryRhyme">Click a button....</div>
+						<hr>
+						<button id="btnNurseryRhyme">Generate nursery rhyme</button>
+						<button id="btnNurseryRhymeAjax">Generate nursery rhyme from AJAX</button>
 
-		});	
-	</script>
-{{/section}}
+						{{#section 'jquery'}}
+							<script>
+								$(document).ready(function(){
+
+									var nurseryRhymeTemplate = Handlebars.compile(
+										$('#nurseryRhymeTemplate').html());
+
+									var $nurseryRhyme = $('#nurseryRhyme');
+
+									$('#btnNurseryRhyme').on('click', function(evt){
+										evt.preventDefault();
+										$nurseryRhyme.html(nurseryRhymeTemplate({
+											animal: 'basilisk',
+											bodyPart: 'tail',
+											adjective: 'sharp',
+											noun: 'a needle'
+										}));
+									});
+
+									$('#btnNurseryRhymeAjax').on('click', function(evt){
+										evt.preventDefault();
+										$.ajax('/data/nursery-rhyme', {
+											success: function(data){
+												$nurseryRhyme.html(nurseryRhymeTemplate(data))
+											}
+										});
+									});
+
+								});	
+							</script>
+						{{/section}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

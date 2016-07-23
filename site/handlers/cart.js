@@ -56,7 +56,11 @@ exports.addProcessPost = function(req, res, next){
 };
 
 exports.home = function(req, res, next){
-	res.render('cart', { cart: req.cart });
+	res.render('cart', { 
+		cart: req.cart,
+		logged_in:req.session.logged_in,
+		username:req.session.username
+		 });
 };
 
 exports.checkout = function(req, res, next){
@@ -89,7 +93,7 @@ exports.checkoutProcessPost = function(req, res){
     	{ layout: null, cart: cart }, function(err,html){
 	        if(err) console.error('error in email template: ' + err.stack);
 	        emailService.send(cart.billing.email,
-	        	'Thank you for booking your trip with Meadowlark Travel!',
+	        	'Thank you for booking your trip with Travel USA!',
 	        	html);
 	    }
     );
