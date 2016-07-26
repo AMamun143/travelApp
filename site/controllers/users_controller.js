@@ -64,19 +64,19 @@ router.get('/users/forgot', function(req, res) {
 });
 
 router.post('/users/forgot', function(req, res) {
-    User.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(function(user) {
-        if (user == null) {
+    console.log(req.body)
+
+    User.findOne({email: req.body.email}, function(err, user){
+
+        if (user === null) {
             res.render("users/not-found");
         } else {
+        console.log("sss",user)
             crypto.randomBytes(20, function(err, buf) {
                 var token = buf.toString('hex');
                 user.resetPasswordToken = token;
-                sequelize.query("UPDATE users SET resetPasswordToken=':" + token + "' WHERE email='" + req.body.email + "';");
-                sequelize.query("UPDATE users SET resetPasswordExpires=DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE email='" + req.body.email + "';");
+                // sequelize.query("UPDATE users SET resetPasswordToken=':" + token + "' WHERE email='" + req.body.email + "';");
+                // sequelize.query("UPDATE users SET resetPasswordExpires=DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE email='" + req.body.email + "';");
                 sendgrid.send({
                     to: req.body.email,
                     from: 'noreply@discoverusa.app',
@@ -88,11 +88,16 @@ router.post('/users/forgot', function(req, res) {
                         return console.error(err);
                     }
                     console.log(json);
+                res.render("users/email-sent");
                 }); //end sendgrid
             }); //end crypto
-            res.render("users/email-sent");
         } //end else statement
-    }); //end user.findOne().then()
+
+
+    });
+
+
+
 }); //end users forgot post route
 
 router.get('/users/reset/:token', function(req, res) {

@@ -10,9 +10,6 @@ var http = require('http'),
 	VacationInSeasonListener = require('./models/vacationInSeasonListener.js');
 
 var app = express();
-var http = require('http')
-    server = http.createServer(app)
-    io = require('socket.io').listen(server);
 
 
 var jade = require('jade');
@@ -127,131 +124,131 @@ var options = {
 mongoose.connect(credentials.mongo.connectionString, options)
 
 
-// // initialize vacations
-// Vacation.find(function(err, vacations){
-//     if(vacations.length) return;
+// initialize vacations
+Vacation.find(function(err, vacations){
+    if(vacations.length) return;
 
-//     new Vacation({
-//         name: 'Hood River Day Trip',
-//         slug: 'hood-river-day-trip',
-//         category: 'Day Trip',
-//         sku: 'HR199',
-//         description: 'Spend a day sailing on the Columbia and ' + 
-//             'enjoying craft beers in Hood River!',
-//         priceInCents: 9995,
-//         tags: ['day trip', 'hood river', 'sailing', 'windsurfing', 'breweries'],
-//         inSeason: true,
-//         maximumGuests: 16,
-//         available: true,
-//         packagesSold: 0,
-//     }).save();
-
-
-//     new Vacation({
-//         name: 'New York City',
-//         slug: 'new-york-city',
-//         category: 'Weekend Getaway',
-//         sku: 'OC82',
-//         description: 'Experience the heart of America, the city that never sleeps!',
-//         priceInCents: 269995,
-//         tags: ['weekend getaway', 'oregon coast', 'beachcombing'],
-//         inSeason: false,
-//         maximumGuests: 8,
-//         available: true,
-//         packagesSold: 0,
-//     }).save();
-
-//     new Vacation({
-//         name: 'Oregon Coast Getaway',
-//         slug: 'oregon-coast-getaway',
-//         category: 'Weekend Getaway',
-//         sku: 'OC39',
-//         description: 'Enjoy the ocean air and quaint coastal towns!',
-//         priceInCents: 269995,
-//         tags: ['weekend getaway', 'oregon coast', 'beachcombing'],
-//         inSeason: false,
-//         maximumGuests: 8,
-//         available: true,
-//         packagesSold: 0,
-//     }).save();
-
-//     new Vacation({
-//         name: 'Rock Climbing in Bend',
-//         slug: 'rock-climbing-in-bend',
-//         category: 'Adventure',
-//         sku: 'B99',
-//         description: 'Experience the thrill of rock climbing in the high desert.',
-//         priceInCents: 289995,
-//         tags: ['weekend getaway', 'bend', 'high desert', 'rock climbing', 'hiking', 'skiing'],
-//         inSeason: true,
-//         requiresWaiver: true,
-//         maximumGuests: 4,
-//         available: false,
-//         packagesSold: 0,
-//         notes: 'The tour guide is currently recovering from a skiing accident.',
-//     }).save();
-// });
+    new Vacation({
+        name: 'Hood River Day Trip',
+        slug: 'hood-river-day-trip',
+        category: 'Day Trip',
+        sku: 'HR199',
+        description: 'Spend a day sailing on the Columbia and ' + 
+            'enjoying craft beers in Hood River!',
+        priceInCents: 9995,
+        tags: ['day trip', 'hood river', 'sailing', 'windsurfing', 'breweries'],
+        inSeason: true,
+        maximumGuests: 16,
+        available: true,
+        packagesSold: 0,
+    }).save();
 
 
-// // initialize dealers
-// Dealer.find({}, function(err, dealers){
-//     if(dealers.length) return;
+    new Vacation({
+        name: 'New York City',
+        slug: 'new-york-city',
+        category: 'Weekend Getaway',
+        sku: 'OC82',
+        description: 'Experience the heart of America, the city that never sleeps!',
+        priceInCents: 269995,
+        tags: ['weekend getaway', 'oregon coast', 'beachcombing'],
+        inSeason: false,
+        maximumGuests: 8,
+        available: true,
+        packagesSold: 0,
+    }).save();
+
+    new Vacation({
+        name: 'Oregon Coast Getaway',
+        slug: 'oregon-coast-getaway',
+        category: 'Weekend Getaway',
+        sku: 'OC39',
+        description: 'Enjoy the ocean air and quaint coastal towns!',
+        priceInCents: 269995,
+        tags: ['weekend getaway', 'oregon coast', 'beachcombing'],
+        inSeason: false,
+        maximumGuests: 8,
+        available: true,
+        packagesSold: 0,
+    }).save();
+
+    new Vacation({
+        name: 'Rock Climbing in Bend',
+        slug: 'rock-climbing-in-bend',
+        category: 'Adventure',
+        sku: 'B99',
+        description: 'Experience the thrill of rock climbing in the high desert.',
+        priceInCents: 289995,
+        tags: ['weekend getaway', 'bend', 'high desert', 'rock climbing', 'hiking', 'skiing'],
+        inSeason: true,
+        requiresWaiver: true,
+        maximumGuests: 4,
+        available: false,
+        packagesSold: 0,
+        notes: 'The tour guide is currently recovering from a skiing accident.',
+    }).save();
+});
+
+
+// initialize dealers
+Dealer.find({}, function(err, dealers){
+    if(dealers.length) return;
     
-//     new Dealer({
-//         name: 'Oregon Novelties',
-//         address1: '912 NW Davis St',
-//         city: 'Portland',
-//         state: 'OR',
-//         zip: '97209',
-//         country: 'US',
-//         phone: '503-555-1212',
-//         active: true,
-//     }).save();
+    new Dealer({
+        name: 'Oregon Novelties',
+        address1: '912 NW Davis St',
+        city: 'Portland',
+        state: 'OR',
+        zip: '97209',
+        country: 'US',
+        phone: '503-555-1212',
+        active: true,
+    }).save();
 
-//     new Dealer({
-//         name: 'Bruce\'s Bric-a-Brac',
-//         address1: '159 Beeswax Ln',
-//         city: 'Manzanita',
-//         state: 'OR',
-//         zip: '97209',
-//         country: 'US',
-//         phone: '503-555-1212',
-//         active: true,
-//     }).save();
+    new Dealer({
+        name: 'Bruce\'s Bric-a-Brac',
+        address1: '159 Beeswax Ln',
+        city: 'Manzanita',
+        state: 'OR',
+        zip: '97209',
+        country: 'US',
+        phone: '503-555-1212',
+        active: true,
+    }).save();
 
-//     new Dealer({
-//         name: 'Aunt Beru\'s Oregon Souveniers',
-//         address1: '544 NE Emerson Ave',
-//         city: 'Bend',
-//         state: 'OR',
-//         zip: '97701',
-//         country: 'US',
-//         phone: '503-555-1212',
-//         active: true,
-//     }).save();
+    new Dealer({
+        name: 'Aunt Beru\'s Oregon Souveniers',
+        address1: '544 NE Emerson Ave',
+        city: 'Bend',
+        state: 'OR',
+        zip: '97701',
+        country: 'US',
+        phone: '503-555-1212',
+        active: true,
+    }).save();
 
-//     new Dealer({
-//         name: 'Oregon Goodies',
-//         address1: '1353 NW Beca Ave',
-//         city: 'Corvallis',
-//         state: 'OR',
-//         zip: '97330',
-//         country: 'US',
-//         phone: '503-555-1212',
-//         active: true,
-//     }).save();
+    new Dealer({
+        name: 'Oregon Goodies',
+        address1: '1353 NW Beca Ave',
+        city: 'Corvallis',
+        state: 'OR',
+        zip: '97330',
+        country: 'US',
+        phone: '503-555-1212',
+        active: true,
+    }).save();
 
-//     new Dealer({
-//         name: 'Oregon Grab-n-Fly',
-//         address1: '7000 NE Airport Way',
-//         city: 'Portland',
-//         state: 'OR',
-//         zip: '97219',
-//         country: 'US',
-//         phone: '503-555-1212',
-//         active: true,
-//     }).save();
-// });
+    new Dealer({
+        name: 'Oregon Grab-n-Fly',
+        address1: '7000 NE Airport Way',
+        city: 'Portland',
+        state: 'OR',
+        zip: '97219',
+        country: 'US',
+        phone: '503-555-1212',
+        active: true,
+    }).save();
+});
 
 // dealer geocoding
 function geocodeDealer(dealer){
